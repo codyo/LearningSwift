@@ -15,6 +15,7 @@
 		E43A2D0B215563C40077215D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43A2D09215563C40077215D /* LaunchScreen.storyboard */; };
 		E43A2D16215563C50077215D /* SelfiegramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2D15215563C50077215D /* SelfiegramTests.swift */; };
 		E43A2D21215563C50077215D /* SelfiegramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2D20215563C50077215D /* SelfiegramUITests.swift */; };
+		E43A2D2F215577550077215D /* SelfieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2D2E215577550077215D /* SelfieStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E43A2D1C215563C50077215D /* SelfiegramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfiegramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43A2D20215563C50077215D /* SelfiegramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfiegramUITests.swift; sourceTree = "<group>"; };
 		E43A2D22215563C50077215D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43A2D2E215577550077215D /* SelfieStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				E43A2D00215563C10077215D /* MasterViewController.swift */,
 				E43A2D02215563C10077215D /* DetailViewController.swift */,
 				E43A2D04215563C10077215D /* Main.storyboard */,
+				E43A2D2E215577550077215D /* SelfieStore.swift */,
 				E43A2D07215563C40077215D /* Assets.xcassets */,
 				E43A2D09215563C40077215D /* LaunchScreen.storyboard */,
 				E43A2D0C215563C40077215D /* Info.plist */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43A2D03215563C10077215D /* DetailViewController.swift in Sources */,
+				E43A2D2F215577550077215D /* SelfieStore.swift in Sources */,
 				E43A2D01215563C10077215D /* MasterViewController.swift in Sources */,
 				E43A2CFF215563C10077215D /* AppDelegate.swift in Sources */,
 			);
