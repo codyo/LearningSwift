@@ -44,13 +44,38 @@ enum SelfieStoreError:Error {
 
 final class SelfieStore {
     static let shared = SelfieStore()
+    private var imageCache: [UUID:UIImage] = [:]
+    var documentsFolder:URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!
+    }
     
     ///Gets an image by ID.
     ///Will be cached in memory for future lookups.
     /// - parameter id: the id of the selfie who's image you are after
     /// - returns: the image for the selfie or nil if it doesn't exist
     func getImage(id:UUID) -> UIImage? {
-        return nil
+        //if this image is already in the cache, return it
+        if let image = imageCache[id] {
+            return image
+        }
+        
+        //figure out where this image should live
+        let imageURL = documentsFolder.appendingPathComponent("\(id.uuidString)-image.jpg")
+        
+        guard let imageData = try? Data(contentsOf: imageURL) else {
+                return nil
+        }
+        
+        guard let image = UIImage(data:imageData) else {
+            return nil
+        }
+        
+        //store the loaded image in the cache for next time
+        imageCache[id] = image
+        
+        //return the loaded image
+        return image
+        
     }
     
     ///saves an image to disk
