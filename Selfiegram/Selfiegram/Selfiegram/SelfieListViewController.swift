@@ -8,23 +8,46 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class SelfieListViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
+    var selfies:[Selfie] = []
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //load the list of selfies from the selfie store
+        do {
+            //get the list of photos, sorted by date (newer first)
+            selfies = try SelfieStore.shared.listSelfies().sorted(by: {$0.created > $1.created})
+        } catch let error {
+            showError(message: "Failed to load selfies: \(error.localizedDescription)")
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
-        navigationItem.leftBarButtonItem = editButtonItem
+        //navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
+        //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        //navigationItem.rightBarButtonItem = addButton
+        
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+    }
+    
+    func showError (message:String){
+        //create an alert controller, with the message received
+        let alert = UIAlertController(title:"Error", message:message, preferredStyle: .alert)
+        
+        //add an action to it - it won't do anything, but doing this means
+        //that it will have a button to dismiss it
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+        //show the alert and it's message
+        self.present(alert, animated:true, completion:nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +60,7 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /*
     @objc
     func insertNewObject(_ sender: Any) {
         objects.insert(NSDate(), at: 0)
@@ -57,6 +81,7 @@ class MasterViewController: UITableViewController {
             }
         }
     }
+    */
 
     // MARK: - Table View
 
@@ -65,17 +90,18 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return selfies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let selfie = selfies[indexPath.row] //as! NSDate
+        cell.textLabel!.text = selfie.title
         return cell
     }
 
+    /*
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
@@ -89,6 +115,7 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+ */
 
 
 }

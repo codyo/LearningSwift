@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E43A2CFF215563C10077215D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2CFE215563C10077215D /* AppDelegate.swift */; };
-		E43A2D01215563C10077215D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2D00215563C10077215D /* MasterViewController.swift */; };
+		E43A2D01215563C10077215D /* SelfieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2D00215563C10077215D /* SelfieListViewController.swift */; };
 		E43A2D03215563C10077215D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A2D02215563C10077215D /* DetailViewController.swift */; };
 		E43A2D06215563C10077215D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43A2D04215563C10077215D /* Main.storyboard */; };
 		E43A2D08215563C40077215D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43A2D07215563C40077215D /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		E43A2CFB215563C10077215D /* Selfiegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfiegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43A2CFE215563C10077215D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E43A2D00215563C10077215D /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		E43A2D00215563C10077215D /* SelfieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieListViewController.swift; sourceTree = "<group>"; };
 		E43A2D02215563C10077215D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E43A2D05215563C10077215D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E43A2D07215563C40077215D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				E43A2CFE215563C10077215D /* AppDelegate.swift */,
-				E43A2D00215563C10077215D /* MasterViewController.swift */,
+				E43A2D00215563C10077215D /* SelfieListViewController.swift */,
 				E43A2D02215563C10077215D /* DetailViewController.swift */,
 				E43A2D04215563C10077215D /* Main.storyboard */,
 				E43A2D2E215577550077215D /* SelfieStore.swift */,
@@ -267,7 +267,7 @@
 			files = (
 				E43A2D03215563C10077215D /* DetailViewController.swift in Sources */,
 				E43A2D2F215577550077215D /* SelfieStore.swift in Sources */,
-				E43A2D01215563C10077215D /* MasterViewController.swift in Sources */,
+				E43A2D01215563C10077215D /* SelfieListViewController.swift in Sources */,
 				E43A2CFF215563C10077215D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
