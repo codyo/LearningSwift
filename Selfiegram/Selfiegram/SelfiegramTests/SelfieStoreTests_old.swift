@@ -12,27 +12,27 @@ import UIKit
 
 class SelfieStoreTests: XCTestCase {
     
-    //    override func setUp() {
-    //        super.setUp()
-    //        // Put setup code here. This method is called before the invocation of each test method in the class.
-    //    }
-    //
-    //    override func tearDown() {
-    //        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    //        super.tearDown()
-    //    }
-    //
-    //    func testExample() {
-    //        // This is an example of a functional test case.
-    //        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    //    }
-    //
-    //    func testPerformanceExample() {
-    //        // This is an example of a performance test case.
-    //        self.measure {
-    //            // Put the code you want to measure the time of here.
-    //        }
-    //    }
+//    override func setUp() {
+//        super.setUp()
+//        // Put setup code here. This method is called before the invocation of each test method in the class.
+//    }
+//
+//    override func tearDown() {
+//        // Put teardown code here. This method is called after the invocation of each test method in the class.
+//        super.tearDown()
+//    }
+//
+//    func testExample() {
+//        // This is an example of a functional test case.
+//        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//    }
+//
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
     
     ///a helper function to create images with text being used as the image content.
     /// - returns: an image contaning a representation of the text
@@ -69,10 +69,10 @@ class SelfieStoreTests: XCTestCase {
         let allSelfies = try! SelfieStore.shared.listSelfies()
         
         guard let theSelfie = allSelfies.first(where: {$0.id == newSelfie.id})
-            
-            else {
-                XCTFail("Selfies list should contain the one we just created.")
-                return
+        
+        else {
+            XCTFail("Selfies list should contain the one we just created.")
+            return
         }
         
         XCTAssertEqual(selfieTitle, newSelfie.title)

@@ -12,6 +12,14 @@ class SelfieListViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var selfies:[Selfie] = []
+    
+    //The formatter for creating the "1 minute ago" style label
+    let timeIntervalFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .spellOut
+        formatter.maximumUnitCount = 1
+        return formatter
+    }()
 
 
     override func viewDidLoad() {
@@ -96,8 +104,22 @@ class SelfieListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
+        //get a selfie and use it to configure the cell
         let selfie = selfies[indexPath.row] //as! NSDate
-        cell.textLabel!.text = selfie.title
+        
+        //set up the main label
+        cell.textLabel?.text = selfie.title
+        
+        //set up it's time ago sublabel
+        if let interval = timeIntervalFormatter.string(from: selfie.created, to: Date()) {
+            cell.detailTextLabel?.text = "\(interval) ago"
+        } else {
+            cell.detailTextLabel?.text = nil
+        }
+        
+        //show the selfie image to the left of the cell
+        cell.imageView?.image = selfie.image
+        
         return cell
     }
 
