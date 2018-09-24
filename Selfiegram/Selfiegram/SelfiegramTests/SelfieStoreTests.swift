@@ -80,7 +80,7 @@ class SelfieStoreTests: XCTestCase {
     
     func testSavingImage() throws {
         //arrange
-        let newSelfie = Selfie(title: "Slefie with image test")
+        let newSelfie = Selfie(title: "Selfie with image test")
         
         //act
         newSelfie.image = createImage(text: "   ")
