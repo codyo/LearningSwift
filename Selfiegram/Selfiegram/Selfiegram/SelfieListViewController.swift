@@ -37,11 +37,58 @@ class SelfieListViewController: UITableViewController {
         //navigationItem.leftBarButtonItem = editButtonItem
 
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        //navigationItem.rightBarButtonItem = addButton
+        let addSelfieButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewSelfie))
+        navigationItem.rightBarButtonItem = addSelfieButton
         
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+    }
+    
+    //called after the user has selected a photo
+    func newSelfieTaken(image: UIImage) {
+        //create a new image
+        let newSelfie = Selfie(title: "New Selfie")
+        
+        //store the image
+        newSelfie.image = image
+        
+        //attempt to save the photo
+        do {
+            try SelfieStore.shared.save(selfie: newSelfie)
+        } catch let error {
+            showError(message: "Can't save photo: \(error)")
+            return
+        }
+        
+        //insert this photo into the view controllers list
+        selfies.insert(newSelfie, at:0)
+        
+        //update the table view to show the new photo
+        tableView.insertRows(at: [IndexPath(row:0, section:0)], with: .automatic)
+    }
+    
+    @objc func createNewSelfie(){
+        //create a new image picker
+        let imagePicker = UIImagePickerController()
+        
+        //If a camera is avalible, use it; otherwise, use the photo library
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            
+            //if the front facing camera is avalible, use that
+            if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                imagePicker.cameraDevice = .front
+            } else {
+                imagePicker.sourceType = .photoLibrary
+            }
+            
+            //we want this object to be notified when the user takes a photo
+            imagePicker.delegate = self
+            
+            //present the image picker
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
@@ -123,22 +170,62 @@ class SelfieListViewController: UITableViewController {
         return cell
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
 
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        //If this was a deletion, we have deleting to do
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
+            //get the object from the content array
+            let selfieToRemove = selfies[indexPath.row]
+            
+            //attempt to delete the selfie
+            do{
+                try SelfieStore.shared.delete(selfie:selfieToRemove)
+                //remove it from that array
+                selfies.remove(at: indexPath.row)
+                //remove the entry from the table view
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } catch {
+                let title = selfieToRemove.title
+                showError(message: "Failed to delete \(title).")
+            }
+            
+            
+        } //else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
+        //}
     }
- */
+ 
 
 
+}
+
+extension SelfieListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //called when the user cancels selecting an image
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //called when the user has finished selecting an image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage
+            ?? info[UIImagePickerControllerOriginalImage] as? UIImage
+            else {
+                let message = "Couldn't get a picture from the image Picker!"
+                showError(message: message)
+                return
+            }
+        
+        self.newSelfieTaken(image:image)
+        
+        //get rid of the view controller
+        self.dismiss(animated: true, completion: nil)
+        
+    }
 }
 
