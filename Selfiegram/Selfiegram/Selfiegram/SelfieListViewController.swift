@@ -10,7 +10,7 @@ import UIKit
 
 class SelfieListViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: SelfieDetailViewController? = nil
     var selfies:[Selfie] = []
     
     //The formatter for creating the "1 minute ago" style label
@@ -42,7 +42,7 @@ class SelfieListViewController: UITableViewController {
         
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? SelfieDetailViewController
         }
     }
     
@@ -122,21 +122,25 @@ class SelfieListViewController: UITableViewController {
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
+    */
 
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                let selfie = selfies[indexPath.row] //as! NSDate
+                if let controller = (segue.destination as? UINavigationController)?.topViewController as? SelfieDetailViewController {
+                    controller.selfie = selfie
+                    controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                    controller.navigationItem.leftItemsSupplementBackButton = true
+                }
+                
+                
             }
         }
     }
-    */
+ 
 
     // MARK: - Table View
 
