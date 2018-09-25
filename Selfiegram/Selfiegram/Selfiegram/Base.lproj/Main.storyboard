@@ -34,27 +34,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="323.5" width="335" height="20.5"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Selfie Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zDw-R7-jvl">
+                                <rect key="frame" x="16" y="80" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eIZ-Di-va8"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYs-cl-sWl">
+                                <rect key="frame" x="16" y="118" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="iVk-9G-Bds"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IsY-DG-2Nf">
+                                <rect key="frame" x="16" y="147" width="343" height="504"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="bottom" secondItem="IsY-DG-2Nf" secondAttribute="bottom" constant="16" id="1vm-lQ-Mf7"/>
+                            <constraint firstItem="zDw-R7-jvl" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="16" id="Cki-fA-OIx"/>
+                            <constraint firstItem="zDw-R7-jvl" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" constant="16" id="DZ4-8E-bh9"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="zDw-R7-jvl" secondAttribute="trailing" constant="16" id="K00-o3-75L"/>
+                            <constraint firstItem="EYs-cl-sWl" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="16" id="nLd-sP-uee"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="EYs-cl-sWl" secondAttribute="trailing" constant="16" id="o8P-O2-d8X"/>
+                            <constraint firstItem="IsY-DG-2Nf" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="16" id="qZP-HB-3fI"/>
+                            <constraint firstItem="IsY-DG-2Nf" firstAttribute="top" secondItem="EYs-cl-sWl" secondAttribute="bottom" constant="8" id="x2g-QH-RgR"/>
+                            <constraint firstItem="EYs-cl-sWl" firstAttribute="top" secondItem="zDw-R7-jvl" secondAttribute="bottom" constant="8" id="zL9-dR-hsZ"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="IsY-DG-2Nf" secondAttribute="trailing" constant="16" id="zQx-qd-8XP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
-                    <connections>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
