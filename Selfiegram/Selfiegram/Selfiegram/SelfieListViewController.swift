@@ -80,16 +80,16 @@ class SelfieListViewController: UITableViewController {
             //if the front facing camera is avalible, use that
             if UIImagePickerController.isCameraDeviceAvailable(.front) {
                 imagePicker.cameraDevice = .front
-            } else {
-                imagePicker.sourceType = .photoLibrary
             }
-            
-            //we want this object to be notified when the user takes a photo
-            imagePicker.delegate = self
-            
-            //present the image picker
-            self.present(imagePicker, animated: true, completion: nil)
+        } else {
+            imagePicker.sourceType = .photoLibrary
         }
+        
+        //we want this object to be notified when the user takes a photo
+        imagePicker.delegate = self
+        
+        //present the image picker
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     func showError (message:String){
