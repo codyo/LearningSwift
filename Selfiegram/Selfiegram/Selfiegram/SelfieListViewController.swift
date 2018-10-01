@@ -108,6 +108,9 @@ class SelfieListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
+        
+        //reload all data in the table view
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

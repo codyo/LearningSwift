@@ -15,6 +15,25 @@ class SelfieDetailViewController: UIViewController {
     @IBOutlet weak var dateCreatedLabel: UILabel!
     @IBOutlet weak var selfieImageView: UIImageView!
 
+    @IBAction func doneButtonTapped(_ sender: Any) {
+        self.selfieNameField.resignFirstResponder()
+        
+        //ensure that we have a selfie to work with
+        guard let selfie = selfie else {
+            return
+        }
+        
+        //ensure that we have text in the text field
+        guard let text = selfieNameField?.text else {
+            return
+        }
+        
+        //update the selfie and save it
+        selfie.title = text
+        
+        try? SelfieStore.shared.save(selfie: selfie)
+    }
+    
     func configureView() {
         // Update the user interface for the detail item.
 //        if let detail = selfie {
